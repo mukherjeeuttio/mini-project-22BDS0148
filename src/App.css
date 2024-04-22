@@ -1,85 +1,268 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    scroll-behavior: smooth;
+/* Global styles */
+.app {
+  height: 100vh;
+  display: flex;
+  color: white;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #020230),
+    url("./assets/bg-start.jpg") center;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-    background-color: var(--color-bg);
+/* Main container */
+.main {
+  width: 80%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #020230),
+    url("./assets/bg.jpg") center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 
-a {
-    color: unset;
-    text-decoration: none;
+/* Sidebar container */
+.pyramid {
+  width: 20%;
+  background: linear-gradient(#3b0660, #8b35c8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
 }
+  
+  /* Money list styles */
+  .moneyList {
+    padding: 20px;
+    list-style: none;
+    width: 100%;
+  }
+  
+  .moneyListItem {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .moneyListItem.active {
+    background-color: goldenrod;
+  }
+  
+  .moneyListItemNumber {
+    width: 30%;
+    font-size: 18px;
+    font-weight: 100;
+  }
+  
+  .moneyListItemAmount {
+    font-size: 20px;
+    font-weight: 300;
+  }
+  
+  /* Top section */
+  .top {
+    height: 50%;
+    position: relative;
+  }
+  
+  /* Timer styles */
+  .timer {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 5px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    left: 80px;
+    font-size: 30px;
+    font-weight: 700;
+    background-color: #4b0082;
+    color: white;
+    animation: timer-animation 1s infinite alternate;
+  }
 
-.gradient__bg {
-    /* global 92%+ browsers support */
-    background: radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 100%);
-}
-
-.gradient__text {
-    background: var(--gradient-text);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.section__padding {
-    padding: 4rem 6rem;
-}
-
-.section__margin {
-    padding: 4rem 6rem;
-}
-
-.scale-up-center {
-    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-}
-
-
-@-webkit-keyframes scale-up-center {
+  @keyframes timer-animation {
     0% {
-        -webkit-transform: scale(0.5);
-        transform: scale(0.5);
+      background-color: #4b0082;
     }
-
+    50% {
+      background-color: #8a2be2;
+    }
     100% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
+      background-color: #4b0082;
     }
+  }
+  
+  /* Bottom section */
+  .bottom {
+    height: 50%;
+  }
+  
+  /* Trivia section */
+  .trivia {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .question {
+    width: 80%;
+    background: linear-gradient(#100241, black);
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid goldenrod;
+    font-size: 20px;
+  }
+  
+  .answers {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .answer {
+    width: 40%;
+    padding: 10px;
+    margin: 0 10px 20px 10px;
+    text-align: center;
+    background: linear-gradient(#0e0124, #22074d);
+    border: 2px solid goldenrod;
+    border-radius: 15px;
+    font-weight: 300;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .answer:hover,
+  .answer.active {
+    background: rgb(83, 0, 226);
+  }
+  
+  .answer.correct,
+  .answer.wrong {
+    animation: feedback 3s ease forwards;
+  }
+  
+  @keyframes feedback {
+    0%, 22%, 42% { background: rgb(83, 0, 226); }
+    20%, 40%, 60% { background: linear-gradient(#0e0124, #22074d); }
+    62%, 100% { background: var(--feedback-color); }
+  }
+  
+  .answer.correct { --feedback-color: green; }
+  .answer.wrong { --feedback-color: crimson; }
+  
+  /* End text */
+  .endText,
+  .start {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  
+/* Start section */
+.start {
+    width: 250px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 20px;
 }
 
-@keyframes scale-up-center {
+.startInput {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 9px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.startButton {
+    width: 50%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: #4b0082;
+    color: white;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    border: 2px solid goldenrod;
+}
+
+.startButton:hover {
+    background-color: #8a2be2;
+    animation: background-color-animation 1s infinite alternate;
+    }
+
+
+@keyframes background-color-animation {
     0% {
-        -webkit-transform: scale(0.5);
-        transform: scale(0.5);
+        background-color: #4b0082;
     }
-
+    50% {
+        background-color: #8a2be2;
+    }
     100% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
+        background-color: #4b0082;
     }
 }
 
-@media screen and (max-width: 700px) {
-    .section__padding {
-        padding: 4rem;
-    }
+.startButton:hover {
+    background-color: #4b0082;
+    animation: background-color-animation 1s infinite alternate;
+}
 
-    .section__margin {
-        margin: 4rem;
+.startInput:focus {
+    outline: none;
+}
+
+.startButton {
+    cursor: pointer;
+    font-weight: 500;
+    background-color: blueviolet;
+    color: white;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.startButton:hover {
+    background-color: #4b0082;
+    animation: background-color-animation 1s infinite alternate;
+}
+
+@keyframes background-color-animation {
+    0% {
+        background-color: #4b0082;
+    }
+    50% {
+        background-color: #8a2be2;
+    }
+    100% {
+        background-color: #4b0082;
     }
 }
 
-@media screen and (max-width: 550px) {
-    .section__padding {
-        padding: 4rem 2rem;
-    }
-
-    .section__margin {
-        margin: 4rem 2rem;
-    }
-}
